@@ -18,6 +18,7 @@
     "framer-motion": "10.14",
     "gray-matter": "4.0.3",
     "js-cookie": "3.0.5",
+    "latest": "^0.2.0",
     "new-component": "5.0.2",
     "next": "14.1",
     "next-mdx-remote": "4.4.1",
