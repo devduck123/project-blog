@@ -7,23 +7,32 @@ import BlogHero from "@/components/BlogHero";
 import styles from "./postSlug.module.css";
 
 import { loadBlogPost } from "../../helpers/file-helpers";
+import CodeSnippet from "@/components/CodeSnippet";
+
+// Overwrite default pre tag so that we can render a
+// code snippet instead using CodeSnippet component.
+// Pass this to MDXRemote component as a prop so it
+// can use it to overwrite the default pre tag.
+const components = {
+  pre: ({ children, ...delegated }) => (
+    <CodeSnippet {...delegated}>{children}</CodeSnippet>
+  ),
+};
 
 // Cache the loadBlogPost by wrapping with React.cache()
 // since using for metadata AND UI
-export const getBlogPost = React.cache(
-  async (slug) => {
-    return loadBlogPost(slug);
-  }
-);
+export const getBlogPost = React.cache(async (slug) => {
+  return loadBlogPost(slug);
+});
 
 export async function generateMetadata({ params }) {
-  const { frontmatter }  = await getBlogPost(params.postSlug);
+  const { frontmatter } = await getBlogPost(params.postSlug);
 
   const metadata = {
     title: `${frontmatter.title} • ${BLOG_TITLE}`,
     name: "description",
     content: frontmatter.abstract,
-  }
+  };
 
   return metadata;
 }
@@ -35,7 +44,7 @@ async function BlogPost({ params }) {
     <article className={styles.wrapper}>
       <BlogHero title="Example post!" publishedOn={new Date()} />
       <div className={styles.page}>
-        <MDXRemote source={content} />
+        <MDXRemote source={content} components={{ ...components }} />
       </div>
     </article>
   );
