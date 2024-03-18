@@ -9,6 +9,10 @@ import styles from "./postSlug.module.css";
 import { loadBlogPost } from "../../helpers/file-helpers";
 import CodeSnippet from "@/components/CodeSnippet";
 
+const DivisonGroupsDemo = React.lazy(() =>
+  import("@/components/DivisionGroupsDemo")
+);
+
 // Overwrite default pre tag so that we can render a
 // code snippet instead using CodeSnippet component.
 // Pass this to MDXRemote component as a prop so it
@@ -17,6 +21,7 @@ const components = {
   pre: ({ children, ...delegated }) => (
     <CodeSnippet {...delegated}>{children}</CodeSnippet>
   ),
+  DivisionGroupsDemo: () => <DivisonGroupsDemo />,
 };
 
 // Cache the loadBlogPost by wrapping with React.cache()
