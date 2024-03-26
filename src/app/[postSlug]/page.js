@@ -21,7 +21,7 @@ const components = {
   pre: ({ children, ...delegated }) => (
     <CodeSnippet {...delegated}>{children}</CodeSnippet>
   ),
-  DivisionGroupsDemo: () => <DivisonGroupsDemo />,
+  DivisionGroupsDemo: ({...delegated}) => <DivisonGroupsDemo {...delegated} />,
 };
 
 // Cache the loadBlogPost by wrapping with React.cache()
