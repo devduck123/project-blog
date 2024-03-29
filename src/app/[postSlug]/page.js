@@ -8,6 +8,7 @@ import styles from "./postSlug.module.css";
 
 import { loadBlogPost } from "../../helpers/file-helpers";
 import CodeSnippet from "@/components/CodeSnippet";
+import CircularColorsDemo from "@/components/CircularColorsDemo";
 
 const DivisonGroupsDemo = React.lazy(() =>
   import("@/components/DivisionGroupsDemo")
@@ -21,7 +22,12 @@ const components = {
   pre: ({ children, ...delegated }) => (
     <CodeSnippet {...delegated}>{children}</CodeSnippet>
   ),
-  DivisionGroupsDemo: ({...delegated}) => <DivisonGroupsDemo {...delegated} />,
+  DivisionGroupsDemo: ({ ...delegated }) => (
+    <DivisonGroupsDemo {...delegated} />
+  ),
+  CircularColorsDemo: ({ ...delegated }) => (
+    <CircularColorsDemo {...delegated} />
+  ),
 };
 
 // Cache the loadBlogPost by wrapping with React.cache()
